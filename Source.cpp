@@ -4,8 +4,10 @@ using namespace std;
 
 int main()
 {
-	Organizer organizer("");
-	organizer.EnterJobs(1);
+	Organizer organizer("data.tx");
+	//organizer.EnterJobs(2);
+	organizer.LoadFromFile();
 	organizer.PrintJobs();
+	//organizer.SaveToFile();
 	return 0;
 }

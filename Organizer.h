@@ -80,11 +80,17 @@ public:
 		if (input)
 		{
 			Job job;
-			input >> job.Name;
-			input >> job.Priority;
-			input >> job.Solution;
-			input >> job.JobDoneDate;
-			Jobs.push_back(job);
+			string pr = "";
+			while (!input.eof())
+			{
+				getline(input, job.Name);
+				getline(input, pr);
+				job.Priority = stoi(pr);
+				getline(input, job.Solution);
+				getline(input, job.JobDoneDate);
+				Jobs.push_back(job);
+			}
+			Jobs.pop_back();
 		}
 		else
 		{
@@ -163,10 +169,11 @@ private:
 	Job EnterJob()
 	{
 		Job job;
-		cout << "Enter job`s name: "; cin >> job.Name;
+		cout << "Enter job`s name: "; getline(cin, job.Name);
 		cout << "Enter job`s priority: "; cin >> job.Priority;
-		cout << "Enter job`s solution: "; cin >> job.Solution;
-		cout << "Enter job`s done date: "; cin >> job.JobDoneDate;
+		cin.ignore();
+		cout << "Enter job`s solution: "; getline(cin,job.Solution);
+		cout << "Enter job`s done date: "; getline(cin, job.JobDoneDate);
 		return job;
 	}
 	bool isIndex(int index)
